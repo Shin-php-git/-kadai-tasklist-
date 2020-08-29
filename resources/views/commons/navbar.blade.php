@@ -10,16 +10,14 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
+
+            @if (Auth::check())
                 {{-- タスク作成ページへのリンク --}}
                 <li class="nav-item">{!! link_to_route('tasks.create', '新規タスク作成', [], ['class' => 'nav-link']) !!}</li>
-            @if (Auth::check())
-                {{-- ユーザ一覧ページへのリンク --}}
-                <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        {{-- ユーザ詳細ページへのリンク --}}
-                        <li class="dropdown-item"><a href="#">My profile</a></li>
                         <li class="dropdown-divider"></li>
                         {{-- ログアウトへのリンク --}}
                         <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
