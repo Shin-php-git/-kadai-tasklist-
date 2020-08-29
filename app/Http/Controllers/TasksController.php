@@ -123,13 +123,13 @@ class TasksController extends Controller
             "status" => "required|max:10",
             "content" => "required|max:10",
         ]);
-        
-        $task = Task::findOrFail($id);
-        $task->status = $request-> status; 
-        $task->content = $request->content;
+        if (\Auth::id() === $task->user_id){
+            $task = Task::findOrFail($id);
+            $task->status = $request-> status; 
+            $task->content = $request->content;
        
-        $task->save();
-
+            $task->save();
+        }
         // トップページへリダイレクトさせる
         return redirect('/');
     }
